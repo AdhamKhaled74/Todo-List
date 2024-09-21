@@ -43,6 +43,9 @@ app.use(xss());
 // To serve static files
 app.use(express.static(`${__dirname}/public`));
 
+app.use("/", (req, res) => {
+  res.send('fuck amr');
+})
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/todo", todoRouter);
 
