@@ -45,9 +45,6 @@ app.use(express.static(`${__dirname}/public`));
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/todo", todoRouter);
-app.use("/", (req, res) => {
-  res.send("Hello world");
-});
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
