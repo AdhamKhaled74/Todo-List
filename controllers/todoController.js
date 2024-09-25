@@ -63,3 +63,21 @@ exports.deleteTodo = catchAsync(async (req, res, next) => {
     data: null,
   });
 });
+
+exports.changeTodoStatus = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  if (!["will do", "doing", "did"].includes(status)) {
+    return next(new AppError("Invalid status", 400));
+  }
+  const todo = await Todo.findByIdAndUpdate(id, { status }, { new: true });
+  if (!todo) {
+    return next(new AppError("Todo not found", 404));
+  }
+  res.status(200).json({
+    status: "success",
+    data: {
+      todo,
+    },
+  });
+});

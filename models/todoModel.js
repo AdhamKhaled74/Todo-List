@@ -13,6 +13,11 @@ const todoSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  status: {
+    type: String,
+    enum: ["will do", "doing", "did"], // Restrict to these values
+    default: "will do", // Default status
+  },
 });
 const Todo = mongoose.model("Todo", todoSchema);
 module.exports = Todo;

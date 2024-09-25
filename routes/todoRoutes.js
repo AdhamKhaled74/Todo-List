@@ -15,4 +15,5 @@ router
     authController.restrictTo("admin"),
     todoController.deleteTodo
   );
+router.route("/:id/status").patch(todoController.changeTodoStatus);
 module.exports = router;
